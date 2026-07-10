@@ -1,0 +1,1 @@
+export {getCars} from './garage';

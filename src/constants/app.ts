@@ -1,0 +1,1 @@
+export const GARAGE_PAGE_LIMIT = 10;
