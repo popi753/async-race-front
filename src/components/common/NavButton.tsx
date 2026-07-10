@@ -14,9 +14,10 @@ export default function NavButton({ active, onClick, icon, label }: NavButtonPro
             type="button"
             onClick={onClick}
             className={cn(
-                "flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium transition hover:cursor-pointer text-slate-600 hover:bg-slate-100",
+                "flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium transition text-slate-600 ",
                 {
                     "bg-blue-600 text-white": active,
+                    "hover:bg-slate-100": !active,
                 },
             )}
         >
