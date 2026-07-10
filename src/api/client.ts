@@ -9,7 +9,7 @@ type RequestOptions = {
 type requestProps = {
   path:string;
   options?: RequestOptions;
-  type : "default" | "withHeaders";
+  type? : "default" | "withHeaders";
 }
 
 export async function request<T>({path, options = {}, type = "default"}: requestProps): Promise<T> {
