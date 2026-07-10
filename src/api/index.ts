@@ -1,1 +1,1 @@
-export {getCars} from './garage';
+export { getCars, createCar} from './garage';

@@ -1,4 +1,5 @@
-import useGaragePage from "@/hooks/useGaragePage";
+import { useGaragePage } from "@/hooks";
+import { CreateCarPanel } from "@/components";
 
 export default function GaragePage() {
     const { data, isLoading } = useGaragePage();
@@ -15,6 +16,9 @@ export default function GaragePage() {
                     ({data?.totalCount ? `${data.totalCount} cars` : "There are no cars in the garage"})
                 </span>
             </h2>
+            <div className="flex">
+                <CreateCarPanel />
+            </div>
         </div>
     );
 }
