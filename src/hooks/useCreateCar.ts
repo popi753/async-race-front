@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useShallow } from "zustand/react/shallow";
 import { createCar } from "@/api";
 import { useGarageStore } from "@/store/useGarageStore";
+import { CAR_NAME_MAX_LENGTH } from "@/constants/app";
 
 export default function useCreateCar() {
     const queryClient = useQueryClient();
@@ -25,7 +26,7 @@ export default function useCreateCar() {
         if (name.trim().length === 0) {
             alert("Car name is required");
         }
-        if (name.length > 30) {
+        if (name.length > CAR_NAME_MAX_LENGTH) {
             alert("Car name must be less than 30 characters");
         }
         mutate();
