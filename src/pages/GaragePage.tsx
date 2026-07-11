@@ -1,8 +1,9 @@
 import { useGaragePage } from "@/hooks";
-import { CreateCarPanel, UpdateCarPanel, CarList } from "@/components";
+import { CreateCarPanel, UpdateCarPanel, CarList, Pagination } from "@/components";
+import { GARAGE_PAGE_LIMIT } from "@/constants/app";
 
 export default function GaragePage() {
-    const { data, isLoading, selectedCar } = useGaragePage();
+    const { page, setPage, selectedCar, data, isLoading } = useGaragePage();
 
     if (isLoading) {
         return <p className="text-sm text-slate-500">Loading...</p>;
@@ -22,6 +23,15 @@ export default function GaragePage() {
             </div>
 
             <CarList cars={data?.result || []} />
+
+            <Pagination
+                page={page}
+                totalCount={data?.totalCount || 0}
+                limit={GARAGE_PAGE_LIMIT}
+                onPageChange={(newPage: number) => {
+                    setPage(newPage);
+                }}
+            />
         </div>
     );
 }
