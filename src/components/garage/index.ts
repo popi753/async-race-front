@@ -6,3 +6,4 @@ export { default as RaceTrack } from './RaceTrack';
 export { default as UpdateCarPanel } from './UpdateCarPanel';
 export { default as CarControls } from './CarControls';
 export { default as CarIcon } from './CarIcon';
+export { default as EngineControls } from './EngineControls';
