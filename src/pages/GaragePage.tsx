@@ -1,8 +1,8 @@
 import { useGaragePage } from "@/hooks";
-import { CreateCarPanel, CarList } from "@/components";
+import { CreateCarPanel, UpdateCarPanel, CarList } from "@/components";
 
 export default function GaragePage() {
-    const { data, isLoading } = useGaragePage();
+    const { data, isLoading, selectedCar } = useGaragePage();
 
     if (isLoading) {
         return <p className="text-sm text-slate-500">Loading...</p>;
@@ -18,6 +18,7 @@ export default function GaragePage() {
             </h2>
             <div className="flex">
                 <CreateCarPanel />
+                {selectedCar && <UpdateCarPanel />}
             </div>
 
             <CarList cars={data?.result || []} />
