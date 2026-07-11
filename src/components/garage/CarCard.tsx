@@ -1,9 +1,10 @@
+import { useShallow } from "zustand/react/shallow";
 import { RaceTrack, CarControls, EngineControls } from "@/components";
 import { useGarageStore } from "@/store/useGarageStore";
 import type { Car } from "@/types";
 
 export default function CarCard({ car }: { car: Car }) {
-    const { raceState, isRacing } = useGarageStore((state) => ({raceState : state.raceStates[car.id], isRacing : state.raceStates[car.id]?.status === "driving" || state.raceStates[car.id]?.status === "starting"}));
+    const { raceState, isRacing } = useGarageStore(useShallow((state) => ({raceState : state.raceStates[car.id], isRacing : state.raceStates[car.id]?.status === "driving" || state.raceStates[car.id]?.status === "starting"})));
 
     return (
         <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm">
