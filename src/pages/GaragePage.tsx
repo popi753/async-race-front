@@ -1,5 +1,5 @@
 import { useGaragePage } from "@/hooks";
-import { CreateCarPanel, UpdateCarPanel, CarList, Pagination } from "@/components";
+import { CreateCarPanel, UpdateCarPanel, CarList, Pagination, RaceControls } from "@/components";
 import { GARAGE_PAGE_LIMIT } from "@/constants/app";
 
 export default function GaragePage() {
@@ -22,7 +22,9 @@ export default function GaragePage() {
                 {selectedCar && <UpdateCarPanel />}
             </div>
 
-            <CarList cars={data?.result || []} />
+            <RaceControls />
+
+            <CarList cars={data?.cars || []} />
 
             <Pagination
                 page={page}

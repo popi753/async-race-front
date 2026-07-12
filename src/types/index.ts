@@ -17,3 +17,9 @@ export type EngineState = {
   velocity: number;
   distance: number;
 }
+
+export type Winner = {
+  id : number,
+  name : string,
+  time : number,
+}
