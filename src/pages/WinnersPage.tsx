@@ -3,11 +3,7 @@ import { useWinnersPage } from "@/hooks";
 import { WINNERS_PAGE_LIMIT } from "@/constants/app";
 
 export default function WinnersPage() {
-    const { winnersPage, setWinnersPage, winnerCarsData, isError, isLoading, totalCount } = useWinnersPage();
-
-    if (isError) {
-        <p className="text-sm text-red-600">something went wrong</p>;
-    }
+    const { winnersPage, setWinnersPage, winnerCarsDataFiltered, isError, isLoading, totalCount } = useWinnersPage();
 
     return (
         <div className="space-y-4">
@@ -20,8 +16,10 @@ export default function WinnersPage() {
                 <p className="py-8 text-center text-slate-500">Loading winners...</p>
             ) : totalCount === 0 ? (
                 <EmptyWinners />
+            ) : isError ? (
+                <p className="text-sm text-red-600">something went wrong</p>
             ) : (
-                <WinnersTable winners={winnerCarsData ?? []} />
+                <WinnersTable winners={winnerCarsDataFiltered ?? []} />
             )}
             <Pagination
                 page={winnersPage}

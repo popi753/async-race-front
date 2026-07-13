@@ -17,11 +17,7 @@ export default function useWinnersPage() {
         })),
     );
 
-    const {
-        data,
-        isLoading: isLoadingIds,
-        isError: isErrorIds,
-    } = useQuery({
+    const { data, isLoading: isLoadingIds, isError: isErrorIds } = useQuery({
         queryKey: ["winners", { page: winnersPage, sort: sort, order: order }],
         queryFn: () => getWinners(winnersPage, sort, order, WINNERS_PAGE_LIMIT),
     });
@@ -40,13 +36,15 @@ export default function useWinnersPage() {
             return {
                 winnerCarsData: results.map((result) => result.data),
                 isLoadingCars: results.some((result) => result.isLoading),
-                isErrorCars: results.some((result) => result.isError),
+                isErrorCars: results.every((result) => result.isError),
             };
         },
     });
 
-    const isError = isErrorIds || isErrorCars || winnerCarsData.some((car) => car === undefined);
+    const isError = isErrorIds || isErrorCars ;
     const isLoading = isLoadingIds || isLoadingCars;
 
-    return { winnersPage, setWinnersPage, winnerCarsData, isError, isLoading, totalCount: data?.totalCount };
+    const winnerCarsDataFiltered = winnerCarsData.filter((car) => car !== undefined);
+
+    return { winnersPage, setWinnersPage, winnerCarsDataFiltered, isError, isLoading, totalCount : data?.totalCount ?? 0 };
 }
