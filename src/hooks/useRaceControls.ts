@@ -15,7 +15,6 @@ export default function useRaceControls() {
 
     const handleRaceStart = useCallback(() => {
         const data = queryClient.getQueryData(['garage', { page }]) as { cars: Car[], totalCount: number };
-        console.log("handleRaceStart", data)
         startRace(data.cars);
     }, [queryClient, startRace, page]);
 
