@@ -32,6 +32,7 @@ export type Winner = {
 export type WinnerCar = {
   id: number,
   name: string,
+  time: number,
 }
 
 export type SortField =  'wins' | 'time' | "";

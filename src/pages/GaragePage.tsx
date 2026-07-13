@@ -3,11 +3,16 @@ import { CreateCarPanel, UpdateCarPanel, CarList, Pagination, RaceControls } fro
 import { GARAGE_PAGE_LIMIT } from "@/constants/app";
 
 export default function GaragePage() {
-    const { page, setPage, selectedCar, data, isLoading } = useGaragePage();
+    const { page, setPage, selectedCar, data, isLoading, isError } = useGaragePage();
 
     if (isLoading) {
         return <p className="text-sm text-slate-500">Loading...</p>;
     }
+
+    if (isError) {
+        return <p className="text-sm text-red-500">Error loading garage data.</p>;
+    }
+
 
     return (
         <div className="flex flex-col space-y-4">
