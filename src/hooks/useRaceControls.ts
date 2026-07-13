@@ -6,9 +6,7 @@ import generateRandomCars from "@/helpers/generateRandomCars";
 import type { Car } from "@/types";
 
 export default function useRaceControls() {
-    const { isRacing, page, startRace, resetRace } = useGarageStore(useShallow((state) => { return { isRacing: state.isRacing, page: state.garagePage, startRace: state.startRace, resetRace: state.resetRace } }));
-
-    const hasRaceStates = useGarageStore(useShallow((state) => Object.keys(state.raceStates).length > 0));
+    const { isRacing, page, startRace, resetRace, hasRaceStates } = useGarageStore(useShallow((state) => { return { isRacing: state.isRacing, page: state.garagePage, startRace: state.startRace, resetRace: state.resetRace, hasRaceStates: Object.keys(state.raceStates).length > 0 } }));
 
     const queryClient = useQueryClient();
     const cashedGarageData = queryClient.getQueryData(['garage', { page: page }]) as { cars: Car[], totalCount: number };
@@ -21,7 +19,6 @@ export default function useRaceControls() {
     const handleRandomCarsGeneration = useCallback(() => {
         generateRandomCars();
         queryClient.invalidateQueries({ queryKey: ['garage', { page }] })
-
     }, [queryClient, page]);
 
     const { totalCount } = cashedGarageData;

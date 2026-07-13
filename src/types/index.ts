@@ -20,6 +20,11 @@ export type EngineState = {
 
 export type Winner = {
   id : number,
-  name : string,
+  wins : number,
   time : number,
+}
+
+export type WinnerCar = {
+  id: number,
+  name: string,
 }

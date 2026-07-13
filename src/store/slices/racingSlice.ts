@@ -2,7 +2,7 @@ import type { StateCreator } from 'zustand'
 import { ApiError, startOrStopEngine, switchToDrive } from '@/api';
 import { saveWinner } from '@/helpers';
 import { HTTP_SERVER_ERROR, MS_PER_SECOND } from '@/constants/app';
-import type { Car, Winner } from '@/types';
+import type { Car, WinnerCar } from '@/types';
 
 type raceState = {
   id: number;
@@ -26,7 +26,7 @@ export type RacingSliceState = {
   startRace: (cars: Car[]) => Promise<void>;
   resetRace: () => void;
 
-  winner: Winner | null | undefined;
+  winner: WinnerCar | null | undefined;
 }
 
 
@@ -50,7 +50,6 @@ export const createRacingSlice: StateCreator<RacingSliceState> = (set, get) => (
       if (err instanceof ApiError && err.status >= HTTP_SERVER_ERROR) {
         const current = get().raceStates[id];
         set((s) => ({ raceStates: { ...s.raceStates, [id]: { ...s.raceStates[id], status: 'broken', progress: current?.progress ?? 0 } } }));
-        // const isRacing = Object.values(get().raceStates).some((state) => state.status === 'driving' || state.status === 'starting');
         const isRacing = Object.keys(get().raceStates).length > 0;
         get().setIsRacing(isRacing);
       }
