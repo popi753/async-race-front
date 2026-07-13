@@ -1,4 +1,4 @@
-import { CarIcon } from "./index";
+import { CarIcon } from "@/components";
 import { cn } from "@/helpers";
 import type { raceState } from "@/types";
 import { RACE_TRACK_LENGTH_PERCENT } from "@/constants/app";
