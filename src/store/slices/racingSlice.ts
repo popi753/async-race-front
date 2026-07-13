@@ -2,14 +2,7 @@ import type { StateCreator } from 'zustand'
 import { ApiError, startOrStopEngine, switchToDrive } from '@/api';
 import { saveWinner } from '@/helpers';
 import { HTTP_SERVER_ERROR, MS_PER_SECOND } from '@/constants/app';
-import type { Car, WinnerCar } from '@/types';
-
-type raceState = {
-  id: number;
-  status: 'idle' | 'starting' | 'driving' | 'stopped' | 'broken' | 'finished';
-  progress: number;
-  finishTime: number | null;
-}
+import type { Car, raceState, WinnerCar } from '@/types';
 
 export type RacingSliceState = {
   isRacing: boolean;
@@ -27,6 +20,7 @@ export type RacingSliceState = {
   resetRace: () => void;
 
   winner: WinnerCar | null | undefined;
+  setWinner: (winner: WinnerCar | null | undefined) => void;
 }
 
 
@@ -126,7 +120,7 @@ export const createRacingSlice: StateCreator<RacingSliceState> = (set, get) => (
       }
     }
 
-    set(() => ({ isRacing: false }));
+    set(() => ({ isRacing: false, winnerBanerShown: true }));
 
   },
 
@@ -138,4 +132,5 @@ export const createRacingSlice: StateCreator<RacingSliceState> = (set, get) => (
   },
 
   winner: null,
+  setWinner:(winner: WinnerCar | null | undefined) => set({ winner }),
 })

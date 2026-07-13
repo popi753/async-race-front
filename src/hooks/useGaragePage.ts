@@ -7,7 +7,7 @@ import { GARAGE_PAGE_LIMIT } from "@/constants/app";
 
 export default function useGaragePage() {
 
-  const { page, setPage, setTotalCount, selectedCar, winner } = useGarageStore(useShallow((state) => ({ page: state.garagePage, setPage: state.setGaragePage, setTotalCount: state.setTotalCount, selectedCar: state.selectedCar, winner: state.winner })));
+  const { page, setPage, setTotalCount, selectedCar} = useGarageStore(useShallow((state) => ({ page: state.garagePage, setPage: state.setGaragePage, setTotalCount: state.setTotalCount, selectedCar: state.selectedCar, winner: state.winner })));
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ['garage', { page: page }],
@@ -16,17 +16,6 @@ export default function useGaragePage() {
     refetchOnMount: false,
     refetchOnReconnect: false,
   });
-
-  useEffect(() => {
-    if (winner) {
-      alert(`The winner is ${winner.name} with a time of ${winner.time.toFixed(2)} seconds!`);
-    } else if (winner === undefined) {
-      alert(`No winner for this race!`);
-    }
-    return () => {
-      useGarageStore.setState({ winner: null });
-    };
-  }, [winner])
 
   useEffect(() => {
     setTotalCount(data?.totalCount || 0);

@@ -7,3 +7,4 @@ export { default as UpdateCarPanel } from './UpdateCarPanel';
 export { default as CarControls } from './CarControls';
 export { default as EngineControls } from './EngineControls';
 export { default as RaceControls} from './RaceControls';
+export { default as WinnerBanner} from './WinnerBanner';

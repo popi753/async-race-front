@@ -6,6 +6,3 @@ export { default as ColorInput } from './ColorInput';
 export { default as Pagination } from './Pagination';
 export { default as CarIcon } from './CarIcon';
 
-
-
-

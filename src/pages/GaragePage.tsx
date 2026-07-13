@@ -1,5 +1,5 @@
 import { useGaragePage } from "@/hooks";
-import { CreateCarPanel, UpdateCarPanel, CarList, Pagination, RaceControls } from "@/components";
+import { CreateCarPanel, UpdateCarPanel, CarList, Pagination, RaceControls, WinnerBanner } from "@/components";
 import { GARAGE_PAGE_LIMIT } from "@/constants/app";
 
 export default function GaragePage() {
@@ -13,7 +13,6 @@ export default function GaragePage() {
         return <p className="text-sm text-red-500">Error loading garage data.</p>;
     }
 
-
     return (
         <div className="flex flex-col space-y-4">
             <h2 className="text-2xl font-bold text-slate-800">
@@ -22,6 +21,9 @@ export default function GaragePage() {
                     ({data?.totalCount ? `${data.totalCount} cars` : "There are no cars in the garage"})
                 </span>
             </h2>
+
+            <WinnerBanner />
+
             <div className="flex">
                 <CreateCarPanel />
                 {selectedCar && <UpdateCarPanel />}
