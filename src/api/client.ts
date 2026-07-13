@@ -7,12 +7,12 @@ type RequestOptions = {
 }
 
 type requestProps = {
-  path:string;
+  path: string;
   options?: RequestOptions;
-  type? : "default" | "withHeaders";
+  type?: "default" | "withHeaders";
 }
 
-export async function request<T>({path, options = {}, type = "default"}: requestProps): Promise<T> {
+export async function request<T>({ path, options = {}, type = "default" }: requestProps): Promise<T> {
   const { method = 'GET', body, headers = {} } = options;
   const response = await fetch(`${API_BASE_URL}${path}`, {
     method,
@@ -25,7 +25,7 @@ export async function request<T>({path, options = {}, type = "default"}: request
   const result = await response.json();
   if (type === "withHeaders") {
     const totalCount = Number(response.headers.get('X-Total-Count') ?? '0');
-    return {result, totalCount} as T
+    return { result, totalCount } as T
   }
   return (result) as T;
 }

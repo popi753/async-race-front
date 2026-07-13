@@ -1,3 +1,8 @@
+export type responseWithHeaders<T> = {
+  result: T;
+  totalCount: number;
+}
+
 export type Car = {
     id: number;
     name: string;
@@ -28,3 +33,6 @@ export type WinnerCar = {
   id: number,
   name: string,
 }
+
+export type SortField =  'wins' | 'time' | "";
+export type SortOrder = 'ASC' | 'DESC' | "";
