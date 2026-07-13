@@ -4,19 +4,19 @@ type RequestOptions = {
   method?: string;
   body?: unknown;
   headers?: Record<string, string>;
-}
+};
 
 type requestProps = {
   path: string;
   options?: RequestOptions;
   type?: "default" | "withHeaders";
-}
+};
 
 export async function request<T>({ path, options = {}, type = "default" }: requestProps): Promise<T> {
-  const { method = 'GET', body, headers = {} } = options;
+  const { method = "GET", body, headers = {} } = options;
   const response = await fetch(`${API_BASE_URL}${path}`, {
     method,
-    headers: body ? { 'Content-Type': 'application/json', ...headers } : headers,
+    headers: body ? { "Content-Type": "application/json", ...headers } : headers,
     body: body ? JSON.stringify(body) : undefined,
   });
   if (!response.ok) {
@@ -24,10 +24,10 @@ export async function request<T>({ path, options = {}, type = "default" }: reque
   }
   const result = await response.json();
   if (type === "withHeaders") {
-    const totalCount = Number(response.headers.get('X-Total-Count') ?? '0');
-    return { result, totalCount } as T
+    const totalCount = Number(response.headers.get("X-Total-Count") ?? "0");
+    return { result, totalCount } as T;
   }
-  return (result) as T;
+  return result as T;
 }
 
 export class ApiError extends Error {
@@ -35,8 +35,7 @@ export class ApiError extends Error {
 
   public constructor(message: string, status: number) {
     super(message);
-    this.name = 'ApiError';
+    this.name = "ApiError";
     this.status = status;
   }
 }
-

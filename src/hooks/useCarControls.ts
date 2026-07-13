@@ -5,23 +5,25 @@ import { deleteCar, deleteWinner } from "@/api";
 import type { Car } from "@/types";
 
 export default function useCarControls() {
-    const { garagePage, selectedCar, selectCar } = useGarageStore(useShallow((state) => ({ garagePage: state.garagePage, selectedCar: state.selectedCar, selectCar: state.selectCar })));
+  const { garagePage, selectedCar, selectCar } = useGarageStore(
+    useShallow((state) => ({ garagePage: state.garagePage, selectedCar: state.selectedCar, selectCar: state.selectCar })),
+  );
 
-    const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
 
-    const { mutate: deleteCarMutation } = useMutation({
-        mutationFn: async (id: number) => {
-            await deleteCar(id);
-            await deleteWinner(id);
-        },
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["garage"] });
-            const data = queryClient.getQueryData(["garage", { page: garagePage }]) as { cars: Car[]; totalCount: number };
-            if (data.cars.length === 1 || data.cars.length <= 1) {
-                useGarageStore.setState({ garagePage: Math.max(1, garagePage - 1) });
-            }
-        },
-    });
+  const { mutate: deleteCarMutation } = useMutation({
+    mutationFn: async (id: number) => {
+      await deleteCar(id);
+      await deleteWinner(id);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["garage"] });
+      const data = queryClient.getQueryData(["garage", { page: garagePage }]) as { cars: Car[]; totalCount: number };
+      if (data.cars.length === 1 || data.cars.length <= 1) {
+        useGarageStore.setState({ garagePage: Math.max(1, garagePage - 1) });
+      }
+    },
+  });
 
-    return { selectedCar, selectCar, deleteCarMutation };
+  return { selectedCar, selectCar, deleteCarMutation };
 }

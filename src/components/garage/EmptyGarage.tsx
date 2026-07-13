@@ -1,6 +1,6 @@
 import { Car as CarIcon } from "lucide-react";
 
-export default function EmptyGarage(){
+export default function EmptyGarage() {
   return (
     <div className="flex flex-col items-center gap-3 py-12 text-slate-400">
       <CarIcon size={48} />

@@ -12,17 +12,15 @@ function generateRandomCarName(): string {
 }
 
 function generateRandomColor(): string {
-  const hex = '0123456789abcdef';
+  const hex = "0123456789abcdef";
   const chars = Array.from({ length: 6 }, () => hex[randomInt(hex.length)]);
-  return `#${chars.join('')}`;
+  return `#${chars.join("")}`;
 }
 
 const randomNumber = RANDOM_CARS_COUNT;
 
 export default async function generateRandomCars(): Promise<void> {
-  const promises = Array.from({ length: randomNumber }, () =>
-    createCar({ name: generateRandomCarName(), color: generateRandomColor() }),
-  );
+  const promises = Array.from({ length: randomNumber }, () => createCar({ name: generateRandomCarName(), color: generateRandomColor() }));
 
   await Promise.all(promises);
 }

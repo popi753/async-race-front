@@ -7,36 +7,23 @@ export const RANDOM_CARS_COUNT = 100;
 export const ANIMATION_DISTANCE = 500000;
 
 export const CAR_BRANDS = [
-  'Tesla',
-  'Ford',
-  'Chevrolet',
-  'BMW',
-  'Audi',
-  'Mercedes',
-  'Toyota',
-  'Honda',
-  'Porsche',
-  'Ferrari',
-  'Lamborghini',
-  'Bugatti',
+  "Tesla",
+  "Ford",
+  "Chevrolet",
+  "BMW",
+  "Audi",
+  "Mercedes",
+  "Toyota",
+  "Honda",
+  "Porsche",
+  "Ferrari",
+  "Lamborghini",
+  "Bugatti",
 ];
 
-export const CAR_MODELS = [
-  'Model S',
-  'Mustang',
-  'Camaro',
-  'M3',
-  'A4',
-  'C63',
-  'Supra',
-  'Civic',
-  '911',
-  '488',
-  'Aventador',
-  'Chiron',
-];
+export const CAR_MODELS = ["Model S", "Mustang", "Camaro", "M3", "A4", "C63", "Supra", "Civic", "911", "488", "Aventador", "Chiron"];
 
-export const DEFAULT_CAR_COLOR = '#ffffff';
+export const DEFAULT_CAR_COLOR = "#ffffff";
 
 export const RACE_TRACK_LENGTH_PERCENT = 88;
 
