@@ -31,3 +31,7 @@ export function updateWinner(id: number, payload: { wins: number; time: number }
   return request<Winner>({ path: `/winners/${id}`, options: { method: 'PUT', body: payload } });
 }
 
+export function deleteWinner(id: number): Promise<Winner> {
+  return request<Winner>({ path: `/winners/${id}`, options: { method: 'DELETE' } });
+}
+

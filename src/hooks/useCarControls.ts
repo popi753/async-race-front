@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useShallow } from "zustand/react/shallow";
 import { useGarageStore } from "@/store/useGarageStore";
-import { deleteCar } from "@/api";
+import { deleteCar, deleteWinner } from "@/api";
 import type { Car } from "@/types";
 
 export default function useCarControls() {
@@ -12,6 +12,7 @@ export default function useCarControls() {
     const { mutate: deleteCarMutation } = useMutation({
         mutationFn: async (id: number) => {
             await deleteCar(id);
+            await deleteWinner(id);
         },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["garage"] });
