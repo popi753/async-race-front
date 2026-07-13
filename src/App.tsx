@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router";
 import { Layout } from "@/components";
-import { GaragePage, WinnersPage } from "@/pages";
+import { GaragePage, MissingPage, WinnersPage } from "@/pages";
 
 export default function App() {
     return (
@@ -9,6 +9,7 @@ export default function App() {
                 <Route index element={<GaragePage />} />
                 <Route path="/winners" element={<WinnersPage />} />
             </Route>
+            <Route path="*" element={<MissingPage />} />
         </Routes>
     );
 }
